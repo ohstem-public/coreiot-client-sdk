@@ -1,10 +1,10 @@
 {
-    "name": "ThingsBoard",
+    "name": "CoreIoT-Thingsboard",
     "keywords": "mqtt, iot, arduino, esp8266, embedded, esp32, arduino-library, mcu, thingsboard, m5stack-library, arduino-nano-rp2040-connect, arduino-nano-rp2040, raspberry-pi-pico-w",
-    "description": "Arduino library to connect with ThingsBoard IoT Platform over MQTT or HTTP/S",
+    "description": "Arduino library to connect with CoreIoT/ThingsBoard IoT platform over MQTT or HTTP/S",
     "repository": {
         "type": "git",
-        "url": "https://github.com/thingsboard/thingsboard-client-sdk"
+        "url": "https://github.com/ohstem-public/coreiot-client-sdk"
     },
     "dependencies": 
     [

@@ -1,4 +1,4 @@
-# Client SDK to connect with ThingsBoard IoT Platform from various IoT devices (Arduino, Espressif, etc.)
+# Client SDK to connect with CoreIoT/ThingsBoard IoT Platform from various IoT devices (Arduino, Espressif, etc.)
 
 [![MIT license](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://lbesson.mit-license.org/)
 [![ESP32](https://img.shields.io/badge/ESP-32-green.svg?style=flat-square)](https://www.espressif.com/en/products/socs/esp32)
@@ -12,11 +12,11 @@
 [![ESP8266 actions status](https://github.com/thingsboard/thingsboard-client-sdk/actions/workflows/esp8266-compile.yml/badge.svg)](https://github.com/thingsboard/thingsboard-client-sdk/actions/workflows/esp8266-compile.yml)
 ![GitHub stars](https://img.shields.io/github/stars/thingsboard/thingsboard-client-sdk?style=social)
 
-This library provides access to the ThingsBoard platform over the `MQTT` or `HTTP(S)` protocols.
+This library provides access to the CoreIoT/ThingsBoard platform over the `MQTT` or `HTTP(S)` protocols.
 
 ## Examples
 
-The SDK comes with a number of example sketches. See **Files --> Examples --> ThingsBoard** within the Arduino application.
+The SDK comes with a number of example sketches. See **Files --> Examples --> CoreIoT-ThingsBoard** within the Arduino application.
 Please review the complete guide for `ESP32` Pico Kit `GPIO` control and `DHT22` sensor monitoring available [here](https://thingsboard.io/docs/samples/esp32/gpio-control-pico-kit-dht22-sensor/).
 
 ## Supported Frameworks
@@ -25,7 +25,7 @@ Please review the complete guide for `ESP32` Pico Kit `GPIO` control and `DHT22`
 
 Example usage for `Espressif` can be found in the `examples/0014-espressif_esp32_send_data` folder, all other code portions can be implemented the same way only initialization of the needed dependencies is slightly different. Meaning internal call to `ThingsBoard` works the same on both `Espressif` and `Arduino`.
 
-This is also the case, because the only always used dependency that is remaining, is [`ArduinoJson`](https://arduinojson.org/), which despite its name does not require any `Arduino` component. _Please Note:_ you must use `v6.x.x` of this library as `v7.x.x` is not yet supported. Please see [this issue](https://github.com/thingsboard/thingsboard-client-sdk/issues/186#issuecomment-1877641466) for details as to why. 
+This is also the case, because the only always used dependency that is remaining, is [`ArduinoJson`](https://arduinojson.org/), which despite its name does not require any `Arduino` component. _Please Note:_ you must use `v6.x.x` of this library as `v7.x.x` is not yet supported. Please see [this issue](https://github.com/thingsboard/thingsboard-client-sdk/issues/186#issuecomment-1877641466) for details as to why.
 
 ## Installation
 
@@ -69,21 +69,22 @@ git submodule add https://github.com/thingsboard/thingsboard-client-sdk.git comp
 
 To add an external library, we simply have to open `Tools` -> `Manage Libraries` and then search for `ThingsBoard` then press the `install` button for the wanted version. See [how to install library on Arduino IDE](https://arduinogetstarted.com/faq/how-to-install-library-on-arduino-ide) for more detailed information and some troubleshooting if the aforementioned method does not work.
 
-
 ## Dependencies
 
 Following dependencies are installed automatically or must be installed, too:
 
 **Installed automatically:**
- - [ArduinoJSON](https://github.com/bblanchon/ArduinoJson) — needed for dealing with the `JSON` payload that is sent to and received by `ThingsBoard`. _Please Note:_ you must use `v6.x.x` of this library as `v7.x.x` is not yet supported. Please see [this issue](https://github.com/thingsboard/thingsboard-client-sdk/issues/186#issuecomment-1877641466) for details as to why. 
- - [MQTT PubSub Client](https://github.com/thingsboard/pubsubclient) — for interacting with `MQTT`, when using the `Arduino_MQTT_Client` instance as an argument to `ThingsBoard`. Only installed if this library is used over `Arduino IDE` or `PlatformIO` with the Arduino framework.
- - [Arduino Http Client](https://github.com/arduino-libraries/ArduinoHttpClient) — for interacting with `HTTP/S` when using the `Arduino_HTTP_Client` instance as an argument to `ThingsBoardHttp`. Only installed if this library is used over `Arduino IDE` or `PlatformIO` with the Arduino framework.
+
+- [ArduinoJSON](https://github.com/bblanchon/ArduinoJson) — needed for dealing with the `JSON` payload that is sent to and received by `ThingsBoard`. _Please Note:_ you must use `v6.x.x` of this library as `v7.x.x` is not yet supported. Please see [this issue](https://github.com/thingsboard/thingsboard-client-sdk/issues/186#issuecomment-1877641466) for details as to why.
+- [MQTT PubSub Client](https://github.com/thingsboard/pubsubclient) — for interacting with `MQTT`, when using the `Arduino_MQTT_Client` instance as an argument to `ThingsBoard`. Only installed if this library is used over `Arduino IDE` or `PlatformIO` with the Arduino framework.
+- [Arduino Http Client](https://github.com/arduino-libraries/ArduinoHttpClient) — for interacting with `HTTP/S` when using the `Arduino_HTTP_Client` instance as an argument to `ThingsBoardHttp`. Only installed if this library is used over `Arduino IDE` or `PlatformIO` with the Arduino framework.
 
 **Needs to be installed manually:**
- - [MbedTLS Library](https://github.com/Seeed-Studio/Seeed_Arduino_mbedtls) — needed to create hashes for the OTA update for non `Espressif` boards.
- - [Arduino Timer](https://github.com/contrem/arduino-timer) - needed to create non-blocking callback timers for non `Espressif` boards.
- - [WiFiEsp Client](https://github.com/bportaluri/WiFiEsp) — needed when using a `Arduino Uno` with a `ESP8266`.
- - [StreamUtils](https://github.com/bblanchon/StreamUtils) — needed when sending arbitrary amount of payload even if the buffer size is too small to hold that complete payload is wanted, aforementioned feature is automatically enabled if the library is installed.
+
+- [MbedTLS Library](https://github.com/Seeed-Studio/Seeed_Arduino_mbedtls) — needed to create hashes for the OTA update for non `Espressif` boards.
+- [Arduino Timer](https://github.com/contrem/arduino-timer) - needed to create non-blocking callback timers for non `Espressif` boards.
+- [WiFiEsp Client](https://github.com/bportaluri/WiFiEsp) — needed when using a `Arduino Uno` with a `ESP8266`.
+- [StreamUtils](https://github.com/bblanchon/StreamUtils) — needed when sending arbitrary amount of payload even if the buffer size is too small to hold that complete payload is wanted, aforementioned feature is automatically enabled if the library is installed.
 
 ## Supported ThingsBoard Features
 
@@ -93,22 +94,22 @@ Example implementations for all base features, mentioned above, can be found in 
 
 All possible features are implemented over `MQTT` over a specific `IAPI_Implementation` instance:
 
- - [Telemetry data upload](https://thingsboard.io/docs/reference/mqtt-api/#telemetry-upload-api) / `ThingsBoardSized`
- - [Device attribute publish](https://thingsboard.io/docs/reference/mqtt-api/#publish-attribute-update-to-the-server) / `ThingsBoardSized`
- - [Server-side RPC](https://thingsboard.io/docs/reference/mqtt-api/#server-side-rpc) / `Server_Side_RPC`
- - [Client-side RPC](https://thingsboard.io/docs/reference/mqtt-api/#client-side-rpc) / `Client_Side_RPC`
- - [Request attribute values](https://thingsboard.io/docs/reference/mqtt-api/#request-attribute-values-from-the-server) / `Attribute_Request_Callback`
- - [Attribute update subscription](https://thingsboard.io/docs/reference/mqtt-api/#subscribe-to-attribute-updates-from-the-server) / `Shared_Attribute_Update`
- - [Device provisioning](https://thingsboard.io/docs/reference/mqtt-api/#device-provisioning) / `Provision`
- - [Device claiming](https://thingsboard.io/docs/reference/mqtt-api/#claiming-devices) / `ThingsBoardSized`
- - [Firmware OTA update](https://thingsboard.io/docs/reference/mqtt-api/#firmware-api) / `OTA_Firmware_Update`
+- [Telemetry data upload](https://thingsboard.io/docs/reference/mqtt-api/#telemetry-upload-api) / `ThingsBoardSized`
+- [Device attribute publish](https://thingsboard.io/docs/reference/mqtt-api/#publish-attribute-update-to-the-server) / `ThingsBoardSized`
+- [Server-side RPC](https://thingsboard.io/docs/reference/mqtt-api/#server-side-rpc) / `Server_Side_RPC`
+- [Client-side RPC](https://thingsboard.io/docs/reference/mqtt-api/#client-side-rpc) / `Client_Side_RPC`
+- [Request attribute values](https://thingsboard.io/docs/reference/mqtt-api/#request-attribute-values-from-the-server) / `Attribute_Request_Callback`
+- [Attribute update subscription](https://thingsboard.io/docs/reference/mqtt-api/#subscribe-to-attribute-updates-from-the-server) / `Shared_Attribute_Update`
+- [Device provisioning](https://thingsboard.io/docs/reference/mqtt-api/#device-provisioning) / `Provision`
+- [Device claiming](https://thingsboard.io/docs/reference/mqtt-api/#claiming-devices) / `ThingsBoardSized`
+- [Firmware OTA update](https://thingsboard.io/docs/reference/mqtt-api/#firmware-api) / `OTA_Firmware_Update`
 
 ### Over `HTTP(S)`:
 
 The remaining features have to be implemented by hand with the `sendGetRequest` or `sendPostRequest` method. See the [ThingsBoard Documentation](https://thingsboard.io/docs/reference/http-api) on how these features could be implemented. This is not done directly in the library, because most features require constant polling, whether an event occurred or not, this would cause massive overhead if it is done for all possible features and therefore not recommended.
 
- - [Telemetry data upload](https://thingsboard.io/docs/reference/http-api/#telemetry-upload-api)
- - [Device attribute publish](https://thingsboard.io/docs/reference/http-api/#publish-attribute-update-to-the-server)
+- [Telemetry data upload](https://thingsboard.io/docs/reference/http-api/#telemetry-upload-api)
+- [Device attribute publish](https://thingsboard.io/docs/reference/http-api/#publish-attribute-update-to-the-server)
 
 ## Troubleshooting
 
@@ -182,7 +183,7 @@ To fix the issue we simply have to increase the template argument for the method
 
 Alternatively to remove the need for the `MaxKeyValuePairAmount`template argument in the method template list and to ensure the size the method has is always enough to send messages, see the [Dynamic ThingsBoard section](https://github.com/thingsboard/thingsboard-client-sdk?tab=readme-ov-file#dynamic-thingsboard-usage) section. This makes the library use the [`DynamicJsonDocument`](https://arduinojson.org/v6/api/dynamicjsondocument/) instead of the default [`StaticJsonDocument`](https://arduinojson.org/v6/api/staticjsondocument/). Be aware though as this places the json structure onto the heap.
 
-------------------------
+---
 
 Additionally, the [`StaticJsonDocument`](https://arduinojson.org/v6/api/staticjsondocument/) is also used to deserialize the received payload for every kind of response received by the server, besides the `OTA` binary data.
 This means that if the `MaxResponse` template argument is smaller than the amount of received key-value pairs, the `"Serial Monitor"` window will get a respective log showing an error:

@@ -1,4 +1,4 @@
-menu "ThingsBoard Client SDK Configurations"
+menu "CoreIoT/ThingsBoard Client SDK Configurations"
 
     config THINGSBOARD_ENABLE_DYNAMIC
         bool "Replace static with dynami library usage"
